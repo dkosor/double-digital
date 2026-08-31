@@ -197,3 +197,12 @@ ol,ul{margin:0;padding:0;list-style:none}
 .ene{margin:0;border-radius:var(--r);overflow:hidden;background:var(--skog-dyp);
   box-shadow:0 0 0 1px rgba(239,237,230,.14), 0 18px 44px rgba(2,32,15,.45)}
 .ene img{width:100%;height:auto;display:block}
+
+/* ---- merket ------------------------------------------------------------ */
+/* To D-er: den forste i kontur, den andre fylt, forskjovet 78 av 88 enheter.
+   Gapet er en maske, ikke maling, saa merket taaler et hvilket som helst
+   underlag. Lest fra venstre gaar det fra tom til full: for, og etter. */
+.merke{display:inline-flex;align-items:center;gap:11px}
+.merke__d{height:23px;width:auto;display:block;color:var(--bein);flex:0 0 auto}
+.merke__navn{font-family:var(--disp);font-weight:700;font-size:1.1rem;letter-spacing:-.02em}
+@media(max-width:520px){.merke__d{height:18px}.merke__navn{font-size:1rem}}
