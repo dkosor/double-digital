@@ -63,7 +63,6 @@ ol,ul{margin:0;padding:0;list-style:none}
 .topp{position:sticky;top:0;z-index:40;background:rgba(18,51,43,.82);
   backdrop-filter:blur(12px);border-bottom:1px solid var(--hair)}
 .topp__in{min-height:70px;display:flex;align-items:center;gap:clamp(16px,4vw,44px)}
-.merke{font-family:var(--disp);font-weight:700;font-size:1.1rem;letter-spacing:-.02em}
 .topp__nav{display:none;margin-left:auto;gap:clamp(16px,2.6vw,34px);font-size:.94rem}
 @media(min-width:760px){.topp__nav{display:flex}}
 .topp__nav a{color:var(--bein-72);padding:8px 0;transition:color .25s var(--e)}
@@ -203,6 +202,28 @@ ol,ul{margin:0;padding:0;list-style:none}
    Gapet er en maske, ikke maling, saa merket taaler et hvilket som helst
    underlag. Lest fra venstre gaar det fra tom til full: for, og etter. */
 .merke{display:inline-flex;align-items:center;gap:11px}
-.merke__d{height:23px;width:auto;display:block;color:var(--bein);flex:0 0 auto}
-.merke__navn{font-family:var(--disp);font-weight:700;font-size:1.1rem;letter-spacing:-.02em}
-@media(max-width:520px){.merke__d{height:18px}.merke__navn{font-size:1rem}}
+.merke__d{height:22px;width:auto;display:block;flex:0 0 auto;
+  filter:drop-shadow(0 1px 0 rgba(2,32,15,.55))}
+.merke__navn{font-weight:500;font-size:.8rem;letter-spacing:.26em;
+  text-indent:.26em;text-transform:uppercase;color:var(--bein)}
+@media(max-width:520px){.merke__d{height:18px}.merke__navn{font-size:.7rem;letter-spacing:.2em}}
+
+/* ---- preget laas i bunnen ----------------------------------------------
+   Monogrammet gitt luft, som et stempel paa baksiden av et visittkort.
+   Dybden er to forskjovne kopier, lys over og morkt under, ikke en skygge. */
+.laasfelt{background:
+    radial-gradient(60rem 30rem at 50% -30%, var(--skog-lys) 0%, transparent 62%),
+    var(--skog);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.09)}
+.laas{display:flex;flex-direction:column;align-items:center;gap:20px;
+  padding:clamp(56px,8vw,92px) var(--gut) clamp(52px,7vw,80px);text-align:center}
+.laas__d{height:clamp(52px,7vw,76px);width:auto;
+  filter:drop-shadow(0 -1px 0 rgba(255,243,208,.5)) drop-shadow(0 2px 1px rgba(2,24,11,.6))}
+.laas__strek{width:min(200px,42vw);border:0;border-top:1px solid var(--hair);margin:0}
+.laas__navn{margin:0;font-size:.78rem;font-weight:500;letter-spacing:.42em;
+  text-indent:.42em;text-transform:uppercase;color:var(--bein-72)}
+@media(prefers-reduced-motion:no-preference){
+  .laas__d{transition:filter .5s var(--e)}
+  .laas:hover .laas__d{filter:drop-shadow(0 -1px 0 rgba(255,243,208,.85))
+    drop-shadow(0 3px 2px rgba(2,24,11,.7))}
+}
