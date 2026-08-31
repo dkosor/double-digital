@@ -184,14 +184,6 @@ ol,ul{margin:0;padding:0;list-style:none}
   *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important}
 }
 
-
-/* ---- merkelapp paa case uten lenke ------------------------------------- */
-.merkelapp{display:inline-block;font-size:.68rem;font-weight:600;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--skog-dyp);background:var(--mynte);
-  padding:8px 13px;border-radius:6px;white-space:nowrap}
-.merkelapp--tom{background:none;color:var(--mynte);
-  border:1px solid rgba(185,198,188,.5)}
-
 /* ---- ett bilde, for oppdrag som ikke hadde en side aa sammenligne med -- */
 .ene{margin:0;border-radius:var(--r);overflow:hidden;background:var(--skog-dyp);
   box-shadow:0 0 0 1px rgba(239,237,230,.14), 0 18px 44px rgba(2,32,15,.45)}
