@@ -1,4 +1,4 @@
-/* Kosor Media portefølje. Ingen avhengigheter.
+/* Double Digital portefølje. Ingen avhengigheter.
    Sammenligneren er en <input type=range> som ligger usynlig over bildene.
    Det gir drag med mus, drag med finger og piltaster gratis, og skjermleser
    får en ekte skyvekontroll i stedet for et div-triks. */
