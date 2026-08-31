@@ -202,7 +202,7 @@ ol,ul{margin:0;padding:0;list-style:none}
    Gapet er en maske, ikke maling, saa merket taaler et hvilket som helst
    underlag. Lest fra venstre gaar det fra tom til full: for, og etter. */
 .merke{display:inline-flex;align-items:center;gap:11px}
-.merke__d{height:22px;width:auto;display:block;flex:0 0 auto;
+.merke__d{height:22px;width:auto;display:block;flex:0 0 auto;color:var(--bein);
   filter:drop-shadow(0 1px 0 rgba(2,32,15,.55))}
 .merke__navn{font-weight:500;font-size:.8rem;letter-spacing:.26em;
   text-indent:.26em;text-transform:uppercase;color:var(--bein)}
