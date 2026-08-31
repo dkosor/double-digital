@@ -1,17 +1,19 @@
-/* Kosor Media, portefølje.
-   Bold Studio Solid: hele siden er ett mettet felt, så skjermbildene av kundenes
-   lyse sider løftes ut av det. Bevisst ulik begge kundesidene, som er varmt
-   papir med marineblått og kjølig stein med vannblått. */
+/* Double Digital, portefølje.
+   British Racing Green, lakkert. Ett mettet felt med en enkelt speilglans over,
+   som lakk på et karosseri, så skjermbildene av kundenes lyse sider løftes ut.
+   Glansen er ett mykt høylys og en kant på hver flate, ikke en fargeovergang. */
 
 :root{
-  --skog:#12332B;
-  --skog-dyp:#0C231D;
-  --bein:#EDEAE3;
-  --mynte:#9FC7B4;
+  --skog:#04351F;          /* British Racing Green */
+  --skog-dyp:#02200F;      /* dypere lakk, til de mørke feltene */
+  --skog-lys:#0B4C2D;      /* der lyset treffer */
+  --bein:#EFEDE6;          /* racing white */
+  --mynte:#B9C6BC;         /* krom */
 
-  --bein-72:rgba(237,234,227,.74);
-  --bein-50:rgba(237,234,227,.54);
-  --hair:rgba(237,234,227,.16);
+  --bein-72:rgba(239,237,230,.76);
+  --bein-50:rgba(239,237,230,.56);
+  --hair:rgba(239,237,230,.16);
+  --glans:rgba(255,255,255,.09);
 
   --wrap:1200px;
   --gut:clamp(20px,5vw,60px);
@@ -24,7 +26,13 @@
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{
-  margin:0;background:var(--skog);color:var(--bein);
+  margin:0;color:var(--bein);
+  /* lakkglansen: ett hoylys oppe til venstre, ett svakt nede til hoyre */
+  background:
+    radial-gradient(120rem 70rem at 12% -12%, var(--skog-lys) 0%, transparent 58%),
+    radial-gradient(80rem 60rem at 108% 96%, rgba(11,76,45,.55) 0%, transparent 60%),
+    var(--skog);
+  background-attachment:fixed;
   font-family:var(--body);font-size:clamp(16px,.35vw + 15px,17.5px);
   line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;
 }
@@ -97,6 +105,7 @@ ol,ul{margin:0;padding:0;list-style:none}
 
 /* ---- sammenligning ----------------------------------------------------- */
 .sml{position:relative;border-radius:var(--r);overflow:hidden;background:var(--skog-dyp);
+  box-shadow:0 0 0 1px rgba(239,237,230,.14), 0 18px 44px rgba(2,32,15,.45);
   aspect-ratio:1200/792;isolation:isolate;touch-action:pan-y}
 .sml img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   object-position:top center}
@@ -128,7 +137,9 @@ ol,ul{margin:0;padding:0;list-style:none}
   background:var(--mynte)}
 
 /* ---- slik -------------------------------------------------------------- */
-.slik{background:var(--skog-dyp)}
+.slik{background:var(--skog-dyp);position:relative}
+.slik::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--glans) 30%,var(--glans) 70%,transparent)}
 .steg{margin-top:clamp(34px,4.4vw,54px);border-top:1px solid var(--hair)}
 .steg li{display:grid;grid-template-columns:auto 1fr;gap:clamp(16px,3vw,38px);
   align-items:start;padding:clamp(22px,2.8vw,32px) 0;border-bottom:1px solid var(--hair)}
@@ -138,7 +149,10 @@ ol,ul{margin:0;padding:0;list-style:none}
 .steg p{margin-top:10px;color:var(--bein-72);max-width:56ch;font-size:.98rem}
 
 .lofte{margin-top:clamp(40px,5vw,64px);border:1px solid var(--hair);
-  border-radius:var(--r);padding:clamp(22px,3vw,34px)}
+  border-radius:var(--r);padding:clamp(22px,3vw,34px);position:relative;
+  background:linear-gradient(180deg,rgba(255,255,255,.05),transparent 42%)}
+.lofte::before{content:"";position:absolute;left:14px;right:14px;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--glans),transparent)}
 .lofte__k{font-size:.74rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
   color:var(--mynte);margin-bottom:18px}
 .lofte p + p{margin-top:14px}
@@ -170,3 +184,16 @@ ol,ul{margin:0;padding:0;list-style:none}
   html{scroll-behavior:auto}
   *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important}
 }
+
+
+/* ---- merkelapp paa case uten lenke ------------------------------------- */
+.merkelapp{display:inline-block;font-size:.68rem;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--skog-dyp);background:var(--mynte);
+  padding:8px 13px;border-radius:6px;white-space:nowrap}
+.merkelapp--tom{background:none;color:var(--mynte);
+  border:1px solid rgba(185,198,188,.5)}
+
+/* ---- ett bilde, for oppdrag som ikke hadde en side aa sammenligne med -- */
+.ene{margin:0;border-radius:var(--r);overflow:hidden;background:var(--skog-dyp);
+  box-shadow:0 0 0 1px rgba(239,237,230,.14), 0 18px 44px rgba(2,32,15,.45)}
+.ene img{width:100%;height:auto;display:block}

@@ -1,5 +1,4 @@
-# Kosor Media, portefølje
+# Double Digital, portefølje
 
-Viser to designutkast for norske småbedrifter, med dra-for-å-sammenligne mot
-sidene de har i dag. Begge utkastene er forslag, ikke bedriftenes publiserte
-nettsider.
+Fire nettsider for norske småbedrifter, tre av dem med dra-for-å-sammenligne mot
+siden de hadde før. Utkastene er designforslag, ikke bedriftenes publiserte sider.
