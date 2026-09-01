@@ -224,7 +224,8 @@ ol,ul{margin:0;padding:0;list-style:none}
    To spalter delt av en haarstrek, ingen kortramme: to personer ved siden av
    hverandre trenger ingen hoydeforskjell. Initialene er ekte Didot-former,
    sporet som merket, saa de leser som monogram og ikke som et manglende bilde.
-   Naar ekte portretter kommer, bytter <img> ut <svg> i samme plate. */
+   Naar ekte portretter kommer, bytter bildeelementet ut vektoren i samme
+   plate. Se bytt-portrett.py. */
 .folk{margin-top:clamp(38px,5vw,62px);display:grid;gap:clamp(34px,4.4vw,58px)}
 @media(min-width:760px){
   .folk{grid-template-columns:1fr 1fr;gap:clamp(40px,5vw,72px)}
