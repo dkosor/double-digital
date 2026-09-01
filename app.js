@@ -88,7 +88,7 @@
     ['.work-intro > div > *', 90],
     ['.case-head', 0], ['.case-feature-layout > *', 120], ['.case-side-layout > *', 120],
     ['.roma-layout > *', 120], ['.case-foot', 0],
-    ['.process-intro > *', 90], ['.commitments > div', 110],
+    ['.process-intro > *', 90], ['.schema-plate', 140], ['.commitments > div', 110],
     ['.people-intro > *', 90], ['.person', 120],
     ['.contact-grid > div > *', 90], ['.contact-status', 0],
   ];
