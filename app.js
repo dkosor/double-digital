@@ -7,22 +7,36 @@
   const rolig = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const rot = document.documentElement;
 
-  /* ---- vendingen ------------------------------------------------------- */
-  const kort = [...document.querySelectorAll('[data-flip]')];
-  const vend = (k, til) => {
-    const paa = til === undefined ? !k.classList.contains('flipped') : til;
-    k.classList.toggle('flipped', paa); k.classList.add('brukt');
-    k.querySelectorAll('.flip-btn').forEach(b => b.setAttribute('aria-pressed', String(paa)));
-    // fokus foelger den synlige siden, saa tastatur ikke lander bak kortet
-    const maal = paa ? k.querySelector('.card-back .flip-btn') : k.querySelector('.card-front .flip-btn');
-    if (maal && k.contains(document.activeElement)) maal.focus({ preventScroll: true });
-  };
-  kort.forEach(k => {
-    k.querySelectorAll('.flip-btn').forEach(b => b.addEventListener('click', e => { e.stopPropagation(); vend(k); }));
-    // klikk paa forsiden (ikke paa lenker) vender ogsaa
-    k.querySelector('.card-front').addEventListener('click', e => { if (!e.target.closest('a,button')) vend(k, true); });
-    k.addEventListener('keydown', e => { if (e.key === 'Escape' && k.classList.contains('flipped')) vend(k, false); });
+  /* ---- forvandlingen: kuttlinjen drives av rullingen, eller av haanden -----
+     Hver ramme har --x, andelen av den nye siden som er skjovet over den gamle.
+     Standard: 0 naar rammen kommer inn nederst, 100 naar den gaar ut overst, saa
+     man ser den gamle siden bli den nye mens man ruller. Drar man skyveren selv,
+     vinner haanden og rullingen slipper den rammen. */
+  const rammer = [...document.querySelectorAll('[data-wipe]')];
+  const sett = (r, x) => { x = Math.max(0, Math.min(100, x)); r.style.setProperty('--x', x.toFixed(1) + '%'); const i = r.querySelector('.wipe-range'); if (i && Math.abs(i.value - x) > .5) i.value = x; };
+  rammer.forEach(r => {
+    const i = r.querySelector('.wipe-range'); if (!i) return;
+    i.addEventListener('input', () => { r.classList.add('brukt'); sett(r, +i.value); });
+    // med bevegelse starter rammen som den gamle siden og forvandles ved rulling;
+    // uten bevegelse staar den paa 50 og kan dras
+    sett(r, rolig ? 50 : 0);
   });
+  const glatt = t => t * t * (3 - 2 * t);
+  const drivRammer = () => {
+    if (rolig) return;
+    const h = innerHeight;
+    rammer.forEach(r => {
+      if (r.classList.contains('brukt')) return;
+      const b = r.getBoundingClientRect();
+      if (b.bottom < 0 || b.top > h) return;
+      // 0 naar toppen av rammen kommer inn nederst, 1 naar bunnen gaar ut overst,
+      // strukket litt saa forvandlingen skjer i det man faktisk ser paa rammen
+      const p = (h - b.top) / (h + b.height);
+      sett(r, glatt(Math.max(0, Math.min(1, (p - .12) / .76))) * 100);
+    });
+  };
+  addEventListener('scroll', drivRammer, { passive: true }); addEventListener('resize', drivRammer, { passive: true });
+  drivRammer();
 
   /* ---- meny og topp ---------------------------------------------------- */
   const header = document.querySelector('[data-header]');
@@ -48,7 +62,7 @@
      det blir staaende. En sjekk per rullehendelse kan ikke gaa glipp av noe,
      og bunnen av siden faar egen regel der terskelen ellers aldri krysses. */
   const GRUPPER = [
-    ['.green-block li', 80], ['.work > .shell:first-child > *', 90], ['.card', 120],
+    ['.green-block li', 80], ['.work > .shell:first-child > *', 90], ['.proeve', 110],
     ['.method-text > *', 90], ['.green-block', 0],
     ['.people-text > *', 90], ['.person', 130],
     ['.green-band > *', 110], ['.site-footer', 0],
@@ -64,18 +78,10 @@
       el.dataset.inn = ''; el.style.setProperty('--nol', (i * trinn) + 'ms'); emner.push(el);
     });
   });
-  // ett kort viser vendingen en gang, saa man skjonner hva provene gjor.
-  // Avbrytes av forste beroering, og vendes tilbake av seg selv.
-  const demo = kort[kort.length - 1]; let demoGjort = false;
   const sjekk = () => {
     const h = innerHeight, iBunn = scrollY + h >= rot.scrollHeight - 2, grense = iBunn ? h : h * 0.92;
     for (let i = emner.length - 1; i >= 0; i--) if (emner[i].getBoundingClientRect().top < grense) { emner[i].classList.add('inne'); emner.splice(i, 1); }
-    if (demo && !demoGjort && demo.getBoundingClientRect().top < h * 0.7) {
-      demoGjort = true;
-      setTimeout(() => { if (!demo.classList.contains('brukt')) { demo.classList.add('flipped');
-        setTimeout(() => { if (!demo.classList.contains('brukt')) demo.classList.remove('flipped'); }, 2600); } }, 500);
-    }
-    if (!emner.length && demoGjort) { removeEventListener('scroll', sjekk); removeEventListener('resize', sjekk); }
+    if (!emner.length) { removeEventListener('scroll', sjekk); removeEventListener('resize', sjekk); }
   };
   addEventListener('scroll', sjekk, { passive: true }); addEventListener('resize', sjekk, { passive: true });
   addEventListener('load', sjekk, { once: true }); sjekk();
