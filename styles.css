@@ -8,7 +8,7 @@
   --kromgrad: linear-gradient(135deg, #FDFEFF 0%, #B9C6BC 45%, #E8EEF2 70%, #8A959D 100%);
   --glass: linear-gradient(160deg, rgba(255, 255, 255, .13), rgba(255, 255, 255, .04));
   --shell: 1280px; --gut: clamp(20px, 5vw, 64px);
-  --disp: "Syne", ui-sans-serif, system-ui, sans-serif; --body: "Manrope", ui-sans-serif, system-ui, sans-serif; --mono: "Fira Code", ui-monospace, Menlo, monospace;
+  --disp: "Archivo", ui-sans-serif, system-ui, sans-serif; --body: "Manrope", ui-sans-serif, system-ui, sans-serif; --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
   --e: cubic-bezier(.2, .72, .25, 1);
 }
 *, *::before, *::after { box-sizing: border-box; }
@@ -22,18 +22,18 @@ main, .topp { position: relative; z-index: 1; }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
 h1, h2, h3, p, figure { margin: 0; }
-h1, h2 { font-family: var(--disp); font-weight: 800; letter-spacing: -.035em; line-height: .96; text-wrap: balance; }
-h3 { font-family: var(--disp); font-weight: 700; letter-spacing: -.02em; line-height: 1.1; }
+h1, h2 { font-family: var(--disp); font-weight: 600; letter-spacing: -.025em; line-height: 1; text-wrap: balance; }
+h3 { font-family: var(--disp); font-weight: 600; letter-spacing: -.015em; line-height: 1.15; }
 ol, ul { margin: 0; padding: 0; list-style: none; }
 button { font: inherit; cursor: pointer; }
 :focus-visible { outline: 2px solid var(--krom); outline-offset: 4px; }
 .skip { position: fixed; top: 12px; left: 12px; z-index: 100; padding: 10px 13px; color: var(--lakk-dyp); background: var(--krom); border-radius: 999px; transform: translateY(-180%); transition: transform .2s var(--e); }
 .skip:focus { transform: none; }
 .shell { width: min(var(--shell), 100%); margin-inline: auto; padding-inline: var(--gut); }
-.mono { font-family: var(--mono); font-size: .7rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; }
+.mono { font-family: var(--mono); font-size: .7rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
 .eyebrow { color: var(--krom); }
 .lede { max-width: 50ch; margin-top: clamp(18px, 2.2vw, 28px); color: var(--bein-78); font-size: clamp(1rem, 1.25vw, 1.15rem); line-height: 1.6; }
-h2 { font-size: clamp(2.1rem, 4.2vw, 3.6rem); }
+h2 { font-size: clamp(2rem, 3.7vw, 3.3rem); }
 .linjer > span { display: block; overflow: hidden; padding-bottom: .12em; margin-bottom: -.12em; }
 .linjer > span > i { display: block; font-style: normal; will-change: transform; }
 .anim .linjer > span > i { transform: translateY(110%); }
@@ -62,10 +62,10 @@ h2 { font-size: clamp(2.1rem, 4.2vw, 3.6rem); }
 @supports (background-image: url("a.webp")) { .sveip { background-image: url("assets/cutline-hero-v1.webp"); } }
 .hero::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(105deg, rgba(2, 32, 15, .92) 0%, rgba(2, 32, 15, .7) 40%, transparent 72%); }
 .hero-inn { position: relative; z-index: 3; display: grid; grid-template-columns: 1.12fr .88fr; align-items: center; gap: clamp(40px, 5vw, 80px); padding-top: clamp(40px, 6vw, 80px); padding-bottom: clamp(100px, 14vw, 180px); min-height: calc(100dvh - 70px); }
-.hero h1 { max-width: 18ch; margin-top: 22px; font-size: clamp(2.2rem, 3.6vw, 3.6rem); }
+.hero h1 { max-width: 17ch; margin-top: 24px; font-size: clamp(2.4rem, 4.1vw, 4.2rem); }
 .hero .lede { max-width: 52ch; }
 /* Se arbeidet: krompille med glidende lysrefleks */
-.pille { position: relative; display: inline-flex; align-items: center; gap: 18px; margin-top: clamp(28px, 3.4vw, 40px); padding: 17px 26px; border-radius: 999px; color: var(--lakk-dyp); background-color: #C9D2D0; background-image: var(--kromgrad); font-weight: 700; font-size: .95rem; box-shadow: 0 20px 50px rgba(0, 0, 0, .45), inset 0 1px 0 #fff; overflow: hidden; }
+.pille { position: relative; display: inline-flex; align-items: center; gap: 18px; margin-top: clamp(28px, 3.4vw, 40px); padding: 17px 26px; border-radius: 999px; color: var(--lakk-dyp); background-color: #C9D2D0; background-image: var(--kromgrad); font-weight: 600; font-size: .95rem; box-shadow: 0 20px 50px rgba(0, 0, 0, .45), inset 0 1px 0 #fff; overflow: hidden; }
 .pille::after { content: ""; position: absolute; top: -40%; bottom: -40%; left: -30%; width: 30%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .85), transparent); transform: skewX(-18deg) translateX(-120%); transition: transform .8s cubic-bezier(.3, .7, .2, 1); }
 .pille:hover::after, .pille:focus-visible::after { transform: skewX(-18deg) translateX(560%); }
 .pille:active { transform: translateY(1px); }
@@ -81,15 +81,22 @@ h2 { font-size: clamp(2.1rem, 4.2vw, 3.6rem); }
 .scene { position: relative; aspect-ratio: 1200 / 792; overflow: hidden; border-radius: 10px; background: var(--lakk-dyp); isolation: isolate; }
 .scene img, .tom { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
 .scene .etter { clip-path: inset(0 calc(100% - var(--x)) 0 0); }
-.tom { display: grid; place-items: center; background: linear-gradient(160deg, #0B4C2D, #02200F); }
-.tom span { font-family: var(--disp); font-weight: 800; font-size: clamp(1.4rem, 3vw, 2.6rem); letter-spacing: -.03em; color: var(--bein-60); text-align: center; max-width: 12ch; line-height: 1.05; }
+/* Roma hadde ingen side. Etiketten folger kuttlinjen og staar alltid midt i det
+   som er igjen av for-siden, ellers forsvinner den under den nye siden saa snart
+   linjen passerer midten, og for-siden blir en tom flate. */
+.tom { background: linear-gradient(160deg, #0B4C2D, #02200F); }
+.tom span { position: absolute; top: 50%; left: calc(var(--x) + (100% - var(--x)) / 2); transform: translate(-50%, -50%);
+  font-family: var(--disp); font-weight: 600; font-size: clamp(1.2rem, 2.4vw, 2.1rem); letter-spacing: -.02em; color: var(--bein-60);
+  text-align: center; width: max-content; max-width: min(11ch, calc(100% - var(--x) - 24px)); line-height: 1.1; transition: none; }
 .linje { position: absolute; z-index: 3; top: 0; bottom: 0; left: var(--x); width: 2px; margin-left: -1px; background: var(--krom); box-shadow: 0 0 0 1px rgba(0, 0, 0, .35), 0 0 24px rgba(185, 198, 188, .55); pointer-events: none; }
-.grep { position: absolute; top: 50%; left: 50%; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; color: var(--lakk-dyp); background-color: #C9D2D0; background-image: var(--kromgrad); font-style: normal; font-weight: 700; transform: translate(-50%, -50%); box-shadow: 0 8px 24px rgba(0, 0, 0, .5), inset 0 1px 0 #fff; }
+.grep { position: absolute; top: 50%; left: 50%; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; color: var(--lakk-dyp); background-color: #C9D2D0; background-image: var(--kromgrad); font-style: normal; font-weight: 600; transform: translate(-50%, -50%); box-shadow: 0 8px 24px rgba(0, 0, 0, .5), inset 0 1px 0 #fff; }
 .vend { position: absolute; z-index: 5; inset: 0; width: 100%; height: 100%; margin: 0; appearance: none; -webkit-appearance: none; background: transparent; opacity: 0; cursor: ew-resize; }
 .vend:focus-visible ~ .linje .grep { outline: 3px solid var(--bein); outline-offset: 4px; }
-.case-tekst { display: grid; grid-template-columns: 64px 1fr; gap: 18px; margin-top: clamp(34px, 3.6vw, 44px); }
-.nr { color: var(--krom); padding-top: 6px; }
-.case-tekst h3 { font-size: clamp(1.3rem, 2.1vw, 1.8rem); }
+.case-tekst { display: grid; grid-template-columns: clamp(56px, 6vw, 92px) 1fr; gap: clamp(18px, 2.4vw, 32px); margin-top: clamp(34px, 3.6vw, 44px); }
+/* nummeret som struktur i margen, konturskrift i krom, ikke en mono-etikett */
+.nr { font-family: var(--disp); font-size: clamp(1.7rem, 2.8vw, 2.6rem); font-weight: 600; letter-spacing: -.03em; line-height: 1;
+  text-transform: none; color: transparent; -webkit-text-stroke: 1px rgba(185, 198, 188, .6); padding-top: 2px; will-change: transform; }
+.case-tekst h3 { font-size: clamp(1.4rem, 2.3vw, 2.05rem); }
 .meta { margin-top: 6px; color: var(--bein-60); font-size: .95rem; }
 .case-tekst p:not(.meta) { max-width: 58ch; margin-top: 10px; color: var(--bein-78); font-size: .96rem; line-height: 1.58; }
 /* Aapne utkastet: mono som dekoder */
@@ -115,7 +122,7 @@ h2 { font-size: clamp(2.1rem, 4.2vw, 3.6rem); }
 .plater { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 3.4vw, 48px); }
 .plate { display: grid; place-items: center; aspect-ratio: 1; padding: 18%; will-change: transform; }
 .plate svg { width: 100%; height: auto; filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .5)); }
-.plater figcaption { margin-top: 14px; font-family: var(--disp); font-weight: 700; font-size: 1.05rem; }
+.plater figcaption { margin-top: 14px; font-family: var(--disp); font-weight: 600; letter-spacing: -.015em; font-size: 1.08rem; }
 
 /* ---- kontakt: lakk med det store svake emblemet ------------------------------ */
 .kontakt { position: relative; overflow: hidden; background: var(--lakk-dyp); border-top: 1px solid var(--bein-10); }
@@ -144,7 +151,8 @@ h2 { font-size: clamp(2.1rem, 4.2vw, 3.6rem); }
   .meny a { padding: 12px 0; border-bottom: 1px solid var(--bein-10); }
   .trase { display: flex; flex-direction: row; align-items: center; gap: 12px; } .trase i { width: 60px; }
   .hero h1 { font-size: clamp(2.2rem, 9.6vw, 3rem); }
-  .case-tekst { grid-template-columns: 44px 1fr; gap: 12px; }
+  .case-tekst { grid-template-columns: 40px 1fr; gap: 14px; }
+  .nr { font-size: 1.5rem; }
   .steg li { grid-template-columns: 40px minmax(0, 1fr); gap: 12px; }
   .grep { width: 40px; height: 40px; } .tag { top: 18px; } .tag-for { left: 18px; } .tag-etter { right: 18px; }
   .ramme { padding: 10px; } .plater { gap: 16px; }
