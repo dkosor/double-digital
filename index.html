@@ -42,12 +42,17 @@
   </header>
 
   <main id="hovedinnhold">
-    <section class="hero" id="topp" aria-labelledby="hero-title">
+    <section class="hero scene" id="topp" aria-labelledby="hero-title">
+      <div class="scene-far" aria-hidden="true"></div>
       <div class="shell hero-stack">
         <p class="eyebrow">Nettsider for norske småbedrifter</p>
         <h1 id="hero-title">Bedriften din er bedre enn nettsiden sier.</h1>
         <p class="hero-lede">Vi gjør det tydeligere hvorfor folk skal velge dere. Se forskjellen i fire ekte designforslag før du leser et eneste løfte.</p>
         <a class="knapp-vend" href="#arbeid"><span class="knapp-face knapp-front">Se arbeidet</span><span class="knapp-face knapp-back" aria-hidden="true">↓</span></a>
+      </div>
+      <div class="emblem-stage" aria-hidden="true" data-overlapp="med vilje, to halvdeler av ett merke">
+        <img class="emblem emblem-l" src="assets/dd-venstre.svg" width="1000" height="571" alt="" decoding="async">
+        <img class="emblem emblem-r" src="assets/dd-hoyre.svg" width="1000" height="571" alt="" decoding="async">
       </div>
       <div class="shell tray-wrap">
         <ul class="tray" aria-label="Fire designforslag">
@@ -199,6 +204,10 @@
     </section>
 
     <section class="contact" id="kontakt" aria-labelledby="contact-title">
+      <div class="emblem-close" aria-hidden="true" data-overlapp="med vilje, to halvdeler av ett merke">
+        <img class="emblem emblem-cl" src="assets/dd-venstre.svg" width="1000" height="571" alt="" decoding="async">
+        <img class="emblem emblem-cr" src="assets/dd-hoyre.svg" width="1000" height="571" alt="" decoding="async">
+      </div>
       <div class="shell">
         <div class="green-band riveted"><i class="rivets-b" aria-hidden="true"></i>
           <div>
@@ -215,6 +224,8 @@
       </div>
     </section>
   </main>
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
