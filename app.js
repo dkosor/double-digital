@@ -27,7 +27,7 @@
     if (rolig) return;
     const h = innerHeight;
     rammer.forEach(r => {
-      if (r.classList.contains('brukt')) return;
+      if (r.classList.contains('brukt') || r.hasAttribute('data-demo')) return;
       const b = r.getBoundingClientRect(); if (b.bottom < 0 || b.top > h) return;
       const p = (h - b.top) / (h + b.height);
       sett(r, glatt(Math.max(0, Math.min(1, (p - .14) / .72))) * 100);
@@ -55,10 +55,21 @@
   blokker.forEach(el => ScrollTrigger.create({ trigger: el, start: 'top 90%', once: true, onEnter: () => avslor(el) }));
 
   /* ---- lag i tre hastigheter --------------------------------------------------- */
-  const sveip = document.querySelector('.sveip'), merke = document.querySelector('.hero-merke'), hg = document.querySelector('.hero-glass');
-  if (sveip) gsap.fromTo(sveip, { yPercent: -6 }, { yPercent: 8, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-  if (merke && bred()) gsap.fromTo(merke, { y: 0 }, { y: -90, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-  if (hg && bred()) gsap.fromTo(hg, { y: 30 }, { y: -50, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  /* Heroens panel demonstrerer mekanikken en gang ved innlasting: linjen sveiper
+     rolig til 58 prosent saa man ser hva den gjor, og slipper straks brukeren
+     tar i den. Det er den eneste bevegelsen i heroen, og den viser produktet. */
+  const demo = document.querySelector('[data-demo]');
+  if (demo) {
+    const t0 = performance.now(), varighet = 1900, mal = 58;
+    const lett = t => 1 - Math.pow(1 - t, 3);
+    const tikk = naa => {
+      if (demo.classList.contains('brukt')) return;
+      const t = Math.min(1, (naa - t0 - 700) / varighet);
+      if (t > 0) sett(demo, lett(t) * mal);
+      if (t < 1) requestAnimationFrame(tikk);
+    };
+    requestAnimationFrame(tikk);
+  }
   // glasspanelene: i perspektiv i ro, retter seg opp naar de kommer inn
   gsap.utils.toArray('.ramme').forEach(r => {
     if (bred()) gsap.fromTo(r, { rotateY: 7, transformPerspective: 1400 }, { rotateY: 0, duration: 1.3, ease: 'power3.out', scrollTrigger: { trigger: r, start: 'top 88%', once: true } });

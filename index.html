@@ -16,10 +16,10 @@
   <a class="skip" href="#hovedinnhold">Hopp til innhold</a>
   <header class="topp" data-header>
     <div class="shell topp-inn">
-      <a class="mono topp-navn" href="#topp">Double Digital</a>
+      <a class="topp-navn" href="#topp">Double Digital</a>
       <a class="topp-merke" href="#topp" aria-label="Til toppen"><img src="assets/dd-krom.svg" width="1000" height="571" alt=""></a>
-      <button class="mono meny-knapp" type="button" data-menu-toggle aria-expanded="false" aria-controls="meny">Meny</button>
-      <nav class="meny mono" id="meny" aria-label="Hovedmeny" data-menu>
+      <button class="meny-knapp" type="button" data-menu-toggle aria-expanded="false" aria-controls="meny">Meny</button>
+      <nav class="meny" id="meny" aria-label="Hovedmeny" data-menu>
         <a href="#arbeid">Arbeid</a><a href="#slik">Slik foregår det</a><a href="#oss">Hvem vi er</a>
         <a class="trase" href="#kontakt"><span>Kontakt</span><i aria-hidden="true"></i></a>
       </nav>
@@ -28,20 +28,28 @@
 
   <main id="hovedinnhold">
     <section class="hero" id="topp" aria-labelledby="hero-tittel">
-      <div class="sveip" aria-hidden="true"></div>
-      <div class="shell hero-inn">
+      <div class="shell hero-topp">
         <div class="hero-tekst">
           <p class="mono eyebrow">Nettsider for norske småbedrifter</p>
-          <h1 id="hero-tittel" class="linjer"><span>Bedriften din er</span><span>bedre enn</span><span>nettsiden sier.</span></h1>
+          <h1 id="hero-tittel" class="linjer"><span>Bedriften din er</span><span>bedre enn nettsiden sier.</span></h1>
+        </div>
+        <div class="hero-side">
           <p class="lede linjer"><span>Vi gjør det tydeligere hvorfor folk skal velge dere.</span><span>Se forskjellen i fire ekte designforslag før du leser et eneste løfte.</span></p>
           <a class="pille" href="#arbeid"><span>Se arbeidet</span><i aria-hidden="true">↓</i></a>
         </div>
-        <a class="glass hero-glass" href="#case-haugerud" aria-label="Til Hans Haugerud AS">
-          <img src="assets/haugerud-etter.webp" alt="" width="1200" height="792" fetchpriority="high" decoding="async">
-          <span class="tag tag-for">Hans Haugerud AS</span><span class="tag tag-etter">Etter</span>
-        </a>
       </div>
-      <img class="hero-merke" src="assets/dd-krom.svg" width="1000" height="571" alt="" aria-hidden="true">
+      <div class="shell hero-vis">
+        <div class="glass ramme ramme-hero" data-vend data-demo data-overlapp="med vilje, foer og etter ligger oppaa hverandre" style="--x:0%">
+          <div class="scene">
+            <img class="for" src="assets/haugerud-for.webp" alt="Hans Haugerud AS slik siden var" width="1200" height="792" fetchpriority="high" decoding="async">
+            <img class="etter" src="assets/haugerud-etter.webp" alt="Forslaget for Hans Haugerud AS" width="1200" height="792" fetchpriority="high" decoding="async">
+            <span class="linje" aria-hidden="true"><i class="grep">↔</i></span>
+            <span class="tag tag-for" aria-hidden="true">Før</span><span class="tag tag-etter" aria-hidden="true">Etter</span>
+            <input class="vend" type="range" min="0" max="100" value="0" step="1" aria-label="Skyv mellom før og etter for Hans Haugerud AS">
+          </div>
+        </div>
+        <p class="hero-bbb mono">Hans Haugerud AS <span aria-hidden="true">·</span> dra i linjen</p>
+      </div>
     </section>
 
     <section class="arbeid" id="arbeid" aria-labelledby="arbeid-tittel">
@@ -152,7 +160,7 @@
           <p class="lede">Send navnet på bedriften. Vi ser på dagens side og sier ærlig om det er noe å hente.</p></div>
         <div class="glass status"><p class="mono">Før publisering</p><p>Kontaktopplysningene fylles inn før denne siden går live.</p><p class="liten">E-post, telefon, organisasjonsnummer og postadresse er bevisst ikke gjettet her.</p></div>
       </div>
-      <footer class="shell bunn"><p class="mono">Alle fire utkastene er designforslag, ikke bedriftenes publiserte nettsider, og er ikke bestilt eller godkjent av eierne. Hans Haugeruds side ligger på <a href="https://hanshaugerud.no/" target="_blank" rel="noopener">hanshaugerud.no</a>, og Mickes profil ligger på <a href="https://connecto.no/" target="_blank" rel="noopener">connecto.no</a>. Via SONER har sin egen side på Wix. Roma hadde ingen da utkastet ble laget.</p></footer>
+      <footer class="shell bunn"><p>Alle fire utkastene er designforslag, ikke bedriftenes publiserte nettsider, og er ikke bestilt eller godkjent av eierne. Hans Haugeruds side ligger på <a href="https://hanshaugerud.no/" target="_blank" rel="noopener">hanshaugerud.no</a>, og Mickes profil ligger på <a href="https://connecto.no/" target="_blank" rel="noopener">connecto.no</a>. Via SONER har sin egen side på Wix. Roma hadde ingen da utkastet ble laget.</p></footer>
     </section>
   </main>
   <script src="vendor/gsap.min.js"></script><script src="vendor/ScrollTrigger.min.js"></script><script src="app.js"></script>
