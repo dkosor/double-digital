@@ -52,18 +52,33 @@ h2 { font-size: clamp(2rem, 3.7vw, 3.3rem); }
 .tag-for { left: 24px; color: var(--bein); background: var(--lakk-dyp); }
 .tag-etter { right: 24px; color: var(--lakk-dyp); background: var(--krom); }
 
-/* ---- topp ------------------------------------------------------------------- */
-.topp { position: sticky; top: 0; z-index: 30; background: rgba(2, 32, 15, .55); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--bein-10); transition: background .35s var(--e); }
-.topp.er-nede { background: rgba(2, 32, 15, .86); }
-.topp-inn { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; min-height: 70px; gap: 20px; }
-.topp-navn { font-family: var(--disp); font-weight: 700; font-size: .95rem; letter-spacing: -.005em; color: var(--bein); } .topp-merke { justify-self: center; margin-inline: 28px; } .topp-merke img { width: 52px; height: auto; }
-.meny { display: flex; justify-content: flex-end; align-items: center; gap: clamp(18px, 2.6vw, 34px); color: var(--bein-78); font-size: .97rem; font-weight: 500; }
-.meny a { transition: color .2s var(--e); } .meny a:hover, .meny a:focus-visible { color: var(--bein); }
-.meny-knapp { display: none; justify-self: end; padding: 8px 0; border: 0; background: none; color: var(--bein); font-size: .95rem; font-weight: 600; }
-.trase { position: relative; display: inline-flex; flex-direction: column; gap: 5px; color: var(--bein) !important; }
-.trase i { position: relative; display: block; height: 1px; background: var(--bein-20); }
-.trase i::after { content: "→"; position: absolute; top: -.72em; left: 0; font-size: .8rem; line-height: 1; color: var(--krom); transition: left .5s cubic-bezier(.3, .7, .2, 1); }
-.trase:hover i::after, .trase:focus-visible i::after { left: calc(100% - .7em); }
+/* ---- topp -------------------------------------------------------------------
+   Ett merke, ikke to. Ordmerket og monogrammet sto tidligere hver for seg og
+   gjorde samme jobb; naa er de en laas til venstre. Kontakt var en los strek
+   med en pil i enden som leste som en feil, og er naa en kromkantet knapp som
+   ser ut som en handling ogsaa naar man ikke peker paa den. */
+.topp { position: sticky; top: 0; z-index: 30; background: rgba(2, 26, 14, .62); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); transition: background .35s var(--e), border-color .35s var(--e); border-bottom: 1px solid transparent; }
+.topp.er-nede { background: rgba(2, 26, 14, .92); border-bottom-color: rgba(185, 198, 188, .18); }
+.topp-inn { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 66px; }
+.merke { display: inline-flex; align-items: center; gap: 12px; }
+.merke img { width: 40px; height: auto; }
+.merke span { font-family: var(--disp); font-weight: 700; font-size: .96rem; letter-spacing: -.005em; color: var(--bein); white-space: nowrap; }
+.meny { display: flex; align-items: center; gap: clamp(16px, 2.2vw, 30px); color: var(--bein-78); font-size: .96rem; font-weight: 500; }
+/* lenkene faar en haarstrek som tegnes fra venstre */
+.meny > a:not(.nav-cta) { position: relative; padding: 6px 0; transition: color .2s var(--e); white-space: nowrap; }
+.meny > a:not(.nav-cta)::after { content: ""; position: absolute; right: 0; bottom: 0; left: 0; height: 1px; background: var(--krom); transform: scaleX(0); transform-origin: left; transition: transform .38s var(--e); }
+.meny > a:not(.nav-cta):hover, .meny > a:not(.nav-cta):focus-visible { color: var(--bein); }
+.meny > a:not(.nav-cta):hover::after, .meny > a:not(.nav-cta):focus-visible::after { transform: scaleX(1); }
+/* Kontakt: kromkantet knapp, pilen glir og kanten lyser opp */
+.nav-cta { display: inline-flex; align-items: center; gap: 9px; padding: 9px 17px; border-radius: 999px; color: var(--bein);
+  border: 1px solid rgba(185, 198, 188, .45); background: rgba(185, 198, 188, .06); white-space: nowrap;
+  transition: border-color .3s var(--e), background .3s var(--e), color .3s var(--e); }
+.nav-cta i { font-style: normal; color: var(--krom); transition: transform .3s var(--e), color .3s var(--e); }
+.nav-cta:hover, .nav-cta:focus-visible { border-color: var(--krom); background: rgba(185, 198, 188, .14); }
+.nav-cta:hover i, .nav-cta:focus-visible i { transform: translateX(4px); color: var(--bein); }
+.meny-knapp { display: none; align-items: center; gap: 10px; padding: 8px 0; border: 0; background: none; color: var(--bein); font-family: var(--body); font-size: .95rem; font-weight: 600; }
+.meny-knapp i { display: block; width: 18px; height: 10px; border-top: 1px solid currentColor; border-bottom: 1px solid currentColor; transition: transform .3s var(--e); }
+.topp.is-menu-open .meny-knapp i { transform: rotate(90deg); }
 
 /* ---- hero: artefakten leder ------------------------------------------------
    Experience-modus: portefoljen skal vise arbeidet fra forste viewport, ikke et
@@ -180,12 +195,12 @@ h2 { font-size: clamp(2rem, 3.7vw, 3.3rem); }
   .kontakt-merke { display: none; }
 }
 @media (max-width: 640px) {
-  .topp-inn { grid-template-columns: 1fr auto auto; min-height: 60px; } .topp-merke { margin-inline: 10px; } .topp-merke img { width: 40px; }
-  .meny-knapp { display: inline-block; }
-  .meny { position: absolute; top: 100%; left: 0; right: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 6px var(--gut) 16px; background: rgba(2, 32, 15, .96); border-bottom: 1px solid var(--bein-10); }
+  .topp-inn { min-height: 58px; } .merke img { width: 34px; } .merke span { font-size: .9rem; }
+  .meny-knapp { display: inline-flex; }
+  .meny { position: absolute; top: 100%; left: 0; right: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 8px var(--gut) 20px; background: #042313; border-bottom: 1px solid rgba(185, 198, 188, .18); box-shadow: 0 24px 40px rgba(0, 0, 0, .5); }
   .topp.is-menu-open .meny { display: flex; }
-  .meny a { padding: 12px 0; border-bottom: 1px solid var(--bein-10); }
-  .trase { display: flex; flex-direction: row; align-items: center; gap: 12px; } .trase i { width: 60px; }
+  .meny > a:not(.nav-cta) { padding: 14px 0; border-bottom: 1px solid var(--bein-10); }
+  .nav-cta { justify-content: center; margin-top: 14px; padding: 13px 18px; }
   .hero h1 { font-size: clamp(2.1rem, 8.6vw, 2.8rem); max-width: none; }
   .ramme-hero { padding: 10px; } .ramme-hero .scene { aspect-ratio: 4 / 3; }
   .case-tekst { grid-template-columns: 40px 1fr; gap: 14px; }
