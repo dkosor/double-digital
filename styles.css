@@ -78,8 +78,12 @@ h2 { font-size: clamp(2.1rem, 4.4vw, 3.6rem); }
 .ramme { --y: 0%; position: relative; margin-top: clamp(30px, 3.4vw, 40px); aspect-ratio: 1200 / 792; overflow: hidden; border-radius: var(--r); background: var(--papir-dyp); box-shadow: 0 0 0 1px var(--blekk-18), 0 24px 60px rgba(20, 23, 21, .10); isolation: isolate; }
 .ramme img, .side-tom { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
 .side-etter { clip-path: inset(calc(100% - var(--y)) 0 0 0); }
-.side-tom { display: grid; place-items: center; background: var(--papir-dyp); }
-.side-tom span { font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--blekk-72); padding: 8px 12px; border: 1px solid var(--blekk-18); border-radius: var(--r); }
+/* Romas for-tilstand: ingen side fantes. Platen skal se tegnet ut, ikke tom:
+   et papirark med marglinjer, og setningen satt stor midt paa arket. */
+.side-tom { display: grid; place-items: center; background: var(--papir-dyp);
+  background-image: linear-gradient(var(--blekk-10), var(--blekk-10)), linear-gradient(var(--blekk-10), var(--blekk-10)), linear-gradient(var(--blekk-10), var(--blekk-10)), linear-gradient(var(--blekk-10), var(--blekk-10));
+  background-size: 1px 100%, 1px 100%, 100% 1px, 100% 1px; background-position: 8% 0, 92% 0, 0 12%, 0 88%; background-repeat: no-repeat; }
+.side-tom span { font-family: var(--sans); font-weight: 800; letter-spacing: -.03em; text-transform: none; font-size: clamp(1.4rem, 3vw, 2.6rem); line-height: 1.05; color: var(--blekk-58); text-align: center; max-width: 12ch; padding: 0; border: 0; }
 .stripe { position: absolute; left: 0; right: 0; bottom: var(--y); z-index: 2; display: flex; justify-content: space-between; align-items: center; height: 30px; margin-bottom: -15px; padding: 0 14px; color: var(--bein); background: var(--gronn); font-family: var(--mono); font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; pointer-events: none; }
 .grep { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--bein); background: var(--gronn); box-shadow: 0 0 0 4px var(--gronn); }
 .vend { position: absolute; z-index: 3; inset: 0; width: 100%; height: 100%; margin: 0; appearance: none; -webkit-appearance: none; background: transparent; opacity: 0; cursor: ns-resize; }
