@@ -3,7 +3,7 @@
    glasspaneler i perspektiv oppaa lakken, kanter i krom, etiketter i mono.
    Avskrift av proto/h1-lakk.html, utvidet til alle seksjoner. */
 :root {
-  --lakk: #04351F; --lakk-dyp: #02200F; --lys: #0B4C2D; --bein: #EFEDE6; --krom: #B9C6BC;
+  --lakk: #052A18; --lakk-dyp: #021A0E; --lys: #0E5C37; --bein: #EFEDE6; --krom: #B9C6BC;
   --bein-78: #C9CFC7; --bein-60: rgba(239, 237, 230, .62); --bein-20: rgba(239, 237, 230, .2); --bein-10: rgba(239, 237, 230, .1);
   --kromgrad: linear-gradient(135deg, #FDFEFF 0%, #B9C6BC 45%, #E8EEF2 70%, #8A959D 100%);
   --glass: linear-gradient(160deg, rgba(255, 255, 255, .13), rgba(255, 255, 255, .04));
@@ -14,10 +14,11 @@
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body { margin: 0; color: var(--bein); font-family: var(--body); font-size: clamp(16.5px, .3vw + 15px, 18px); line-height: 1.62; overflow-x: hidden; -webkit-font-smoothing: antialiased;
-  background: var(--lakk); }
-/* korn over lakken, fast, sju prosent */
-body::before { content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .07; mix-blend-mode: screen;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>"); }
+  background: var(--lakk-dyp); }
+/* Et dekorativt haarstreksrutenett laa her og ble fanget av Impeccable som
+   codex-grid-background, et dokumentert generert-UI-trekk. Fjernet: strukturen
+   skal komme fra innholdet, ikke fra et flislagt linjefelt. Seksjonsstreken
+   over hver overskrift blir igjen, fordi den markerer et faktisk startpunkt. */
 main, .topp { position: relative; z-index: 1; }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
@@ -37,6 +38,11 @@ button { font: inherit; cursor: pointer; }
 .eyebrow { color: var(--krom); }
 .lede { max-width: 56ch; margin-top: clamp(18px, 2.2vw, 28px); color: var(--bein-78); font-size: clamp(1.05rem, 1.3vw, 1.2rem); line-height: 1.68; }
 h2 { font-size: clamp(2rem, 3.7vw, 3.3rem); }
+/* Hver seksjon faar et definert startpunkt: en haarstrek over overskriften.
+   Et spesifikasjonsgrep, ikke en eyebrow, saa det bryter ingen rasjon. */
+.seksjonshode { position: relative; padding-top: clamp(22px, 2.6vw, 34px); }
+.seksjonshode::before { content: ""; position: absolute; top: 0; left: 0; width: clamp(80px, 12vw, 170px); height: 1px;
+  background: linear-gradient(90deg, var(--krom), rgba(185, 198, 188, 0)); }
 .linjer > span { display: block; overflow: hidden; padding-bottom: .12em; margin-bottom: -.12em; }
 .linjer > span > i { display: block; font-style: normal; will-change: transform; }
 .anim .linjer > span > i { transform: translateY(110%); }
@@ -66,17 +72,27 @@ h2 { font-size: clamp(2rem, 3.7vw, 3.3rem); }
    Tonalt: systemets egen mellomtone --lys ble aldri brukt, saa siden laa i ett
    morkt baand uten mellomtoner. Tekstbaandet er naa mellomtonen, panelet er
    lyspunktet, og grunnen under er den dype lakken. Tre trinn, ikke ett. */
-.hero { position: relative; padding-bottom: clamp(60px, 8vw, 110px);
-  background: linear-gradient(180deg, var(--lys) 0%, #073A22 46%, var(--lakk) 100%); }
-.hero::after { content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(120% 80% at 78% 8%, rgba(185, 198, 188, .16), transparent 62%); }
-.hero-topp { position: relative; z-index: 2; display: grid; grid-template-columns: 1.15fr .85fr; align-items: end; gap: clamp(30px, 5vw, 80px);
+.hero { position: relative; padding-bottom: clamp(60px, 8vw, 110px); background: var(--lakk-dyp); }
+/* Ett kontrollert lys, lagt bak panelet der oyet skal ende, i stedet for en
+   gradient over hele feltet. En stor mellomgronn flate leser billig; konsentrert
+   lys mot dyp grunn leser dyrt. */
+.hero::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(58% 46% at 50% 78%, rgba(14, 92, 55, .85), transparent 72%),
+              radial-gradient(46% 38% at 76% 6%, rgba(185, 198, 188, .1), transparent 70%); }
+.hero > * { position: relative; z-index: 1; }
+.hero::after { content: ""; position: absolute; right: 0; bottom: 0; left: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(185, 198, 188, .35) 30%, rgba(185, 198, 188, .35) 70%, transparent); }
+.hero-topp { position: relative; z-index: 2; display: grid; grid-template-columns: 1.08fr .92fr; align-items: end; gap: clamp(30px, 5vw, 76px);
   padding-top: clamp(48px, 7vw, 92px); padding-bottom: clamp(34px, 4.4vw, 56px); }
-.hero h1 { max-width: 15ch; margin-top: 20px; font-size: clamp(2.4rem, 4.3vw, 4.4rem); }
-.hero-side { padding-bottom: 6px; }
-.hero .lede { max-width: 46ch; margin-top: 0; }
+.hero h1 { max-width: 15ch; margin-top: 22px; font-size: clamp(2.5rem, 4.7vw, 4.9rem); }
+.hero-side { position: relative; padding-bottom: 6px; padding-left: clamp(0px, 3vw, 40px); }
+@media (min-width: 901px) { .hero-side::before { content: ""; position: absolute; top: 4px; bottom: 10px; left: 0; width: 1px; background: linear-gradient(180deg, transparent, rgba(185, 198, 188, .3) 20%, rgba(185, 198, 188, .3) 80%, transparent); } }
+.hero .lede { max-width: 44ch; margin-top: 0; font-size: clamp(1rem, 1.15vw, 1.1rem); }
 /* Se arbeidet: krompille med glidende lysrefleks */
-.pille { position: relative; display: inline-flex; align-items: center; gap: 18px; margin-top: clamp(22px, 2.6vw, 32px); padding: 17px 26px; border-radius: 999px; color: var(--lakk-dyp); background-color: #C9D2D0; background-image: var(--kromgrad); font-weight: 700; font-size: .97rem; box-shadow: 0 20px 50px rgba(0, 0, 0, .45), inset 0 1px 0 #fff; overflow: hidden; }
+.pille { position: relative; display: inline-flex; align-items: center; gap: 18px; margin-top: clamp(22px, 2.6vw, 32px); padding: 17px 26px; border-radius: 999px; color: var(--lakk-dyp); background-color: #C9D2D0;
+  background-image: linear-gradient(180deg, #FBFDFD 0%, #DCE3E1 34%, #AEB8B6 58%, #CFD7D5 78%, #EDF2F1 100%);
+  font-weight: 700; font-size: .97rem; overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .95), inset 0 -1px 0 rgba(0, 0, 0, .28), 0 1px 0 rgba(255, 255, 255, .12), 0 16px 34px rgba(0, 0, 0, .55); }
 .pille::after { content: ""; position: absolute; top: -40%; bottom: -40%; left: -30%; width: 30%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .85), transparent); transform: skewX(-18deg) translateX(-120%); transition: transform .8s cubic-bezier(.3, .7, .2, 1); }
 .pille:hover::after, .pille:focus-visible::after { transform: skewX(-18deg) translateX(560%); }
 .pille:active { transform: translateY(1px); }
@@ -96,12 +112,15 @@ h2 { font-size: clamp(2rem, 3.7vw, 3.3rem); }
 /* Roma hadde ingen side. Etiketten folger kuttlinjen og staar alltid midt i det
    som er igjen av for-siden, ellers forsvinner den under den nye siden saa snart
    linjen passerer midten, og for-siden blir en tom flate. */
-.tom { background: linear-gradient(160deg, #0B4C2D, #02200F); }
+.tom { background: linear-gradient(160deg, var(--lys), var(--lakk-dyp)); }
 .tom span { position: absolute; top: 50%; left: calc(var(--x) + (100% - var(--x)) / 2); transform: translate(-50%, -50%);
   font-family: var(--disp); font-weight: 600; font-size: clamp(1.2rem, 2.4vw, 2.1rem); letter-spacing: -.02em; color: var(--bein-60);
   text-align: center; width: max-content; max-width: min(11ch, calc(100% - var(--x) - 24px)); line-height: 1.1; transition: none; }
 .linje { position: absolute; z-index: 3; top: 0; bottom: 0; left: var(--x); width: 2px; margin-left: -1px; background: var(--krom); box-shadow: 0 0 0 1px rgba(0, 0, 0, .35), 0 0 24px rgba(185, 198, 188, .55); pointer-events: none; }
-.grep { position: absolute; top: 50%; left: 50%; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; color: var(--lakk-dyp); background-color: #C9D2D0; background-image: var(--kromgrad); font-style: normal; font-weight: 600; transform: translate(-50%, -50%); box-shadow: 0 8px 24px rgba(0, 0, 0, .5), inset 0 1px 0 #fff; }
+.grep { position: absolute; top: 50%; left: 50%; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; color: var(--lakk-dyp); background-color: #C9D2D0;
+  background-image: linear-gradient(180deg, #FBFDFD 0%, #DCE3E1 34%, #AEB8B6 58%, #CFD7D5 78%, #EDF2F1 100%);
+  font-style: normal; font-weight: 600; transform: translate(-50%, -50%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .95), inset 0 -1px 0 rgba(0, 0, 0, .3), 0 8px 22px rgba(0, 0, 0, .55); }
 .vend { position: absolute; z-index: 5; inset: 0; width: 100%; height: 100%; margin: 0; appearance: none; -webkit-appearance: none; background: transparent; opacity: 0; cursor: ew-resize; }
 .vend:focus-visible ~ .linje .grep { outline: 3px solid var(--bein); outline-offset: 4px; }
 .case-tekst { display: grid; grid-template-columns: clamp(56px, 6vw, 92px) 1fr; gap: clamp(18px, 2.4vw, 32px); margin-top: clamp(34px, 3.6vw, 44px); }
@@ -117,16 +136,17 @@ h2 { font-size: clamp(2rem, 3.7vw, 3.3rem); }
 .dekode:hover .mono, .dekode:focus-visible .mono { color: var(--bein); }
 
 /* ---- metode: baand i dyp lakk med kromskinnen bak ---------------------------- */
-.metode { position: relative; overflow: hidden; padding: clamp(80px, 11vw, 150px) 0; background: var(--lakk-dyp); border-top: 1px solid var(--bein-10); border-bottom: 1px solid var(--bein-10); }
-.skinne { position: absolute; top: 0; right: -10%; bottom: 0; width: 55%; background: url("assets/cutline-rail-v1.png") center / cover no-repeat; mix-blend-mode: screen; opacity: .28; pointer-events: none; }
-@supports (background-image: url("a.webp")) { .skinne { background-image: url("assets/cutline-rail-v1.webp"); } }
-.metode::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, var(--lakk-dyp) 30%, transparent 80%); }
-.metode-inn { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(40px, 8vw, 120px); align-items: start; }
+.metode { position: relative; overflow: hidden; padding: clamp(80px, 11vw, 150px) 0; background: var(--lakk); }
+/* Kromskinnen laa her som et bakgrunnsbilde og leste som en loddrett
+   gjengivelsesfeil midt i teksten. Erstattet med et rolig lys i hjornet. */
+.skinne { position: absolute; inset: 0; background: radial-gradient(40% 60% at 96% 12%, rgba(185, 198, 188, .1), transparent 68%); pointer-events: none; }
+.metode::after { content: ""; position: absolute; right: 0; top: 0; left: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(185, 198, 188, .28) 30%, rgba(185, 198, 188, .28) 70%, transparent); }
+.metode-inn { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); gap: clamp(40px, 7vw, 100px); align-items: start; }
 .steg li { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 18px; padding: 22px 0; border-bottom: 1px solid var(--bein-20); min-width: 0; }
 .steg li:first-child { padding-top: 0; } .steg li > div { min-width: 0; }
 .steg .mono { color: var(--krom); padding-top: 4px; }
 .steg h3 { font-size: 1.12rem; } .steg p { max-width: 46ch; margin-top: 6px; color: var(--bein-78); font-size: .93rem; line-height: 1.55; }
-.lofter { margin-top: 28px; display: grid; gap: 10px; } .lofter p { max-width: 60ch; color: var(--bein-78); font-size: .93rem; } .lofter strong { color: var(--bein); }
+.lofter { margin-top: clamp(30px, 4vw, 52px); display: grid; gap: 14px; padding-top: clamp(22px, 2.6vw, 30px); border-top: 1px solid var(--bein-10); } .lofter p { max-width: 60ch; color: var(--bein-78); font-size: .93rem; } .lofter strong { color: var(--bein); }
 
 /* ---- hvem vi er: to glassplater -------------------------------------------- */
 .oss { padding: clamp(80px, 11vw, 150px) 0; }
