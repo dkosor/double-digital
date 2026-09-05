@@ -2,7 +2,7 @@
 
 Hovedsiden ligger nå på https://double-digital-studio.dakibaki.chatgpt.site/.
 
-GitHub Pages-adressen https://dkosor.github.io/double-digital/ videresender til
+GitHub Pages-adressen https://coolingloop.github.io/double-digital/ videresender til
 denne siden. Videresendingen har JavaScript, HTML-reserve og en vanlig lenke.
 Kjente seksjonsankere beholdes med JavaScript; URL-parametere sendes ikke videre.
 
